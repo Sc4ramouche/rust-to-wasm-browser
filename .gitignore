@@ -1,0 +1,8 @@
+# JS dependencies
+node_modules/
+
+# rust output
+target/
+
+# sources sent from client
+src/

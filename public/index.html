@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="./highlight/styles/a11y-dark.css" />
+        <!-- Source Code Pro font -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- reference highlight.js -->
+        <script src="./highlight/highlight.pack.js"></script>
+        <!-- get prebuild highlight.js -->
+        <script
+            charset="UTF-8"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"
+        ></script>
+        <!-- set initial highlight -->
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        <!-- setup arrive.js -->
+        <script src="./scipts/arrive.min.js"></script>
+        <!-- setup dynamic highlighting -->
+        <script>
+            function highlight() {
+                const codeBlocks = document.querySelectorAll('code');
+                codeBlocks.forEach(block => {
+                    hljs.highlightBlock(block);
+                });
+            }
+            document.arrive('code', () => highlight());
+        </script>
+
+        <title>Rust to WASM compiler</title>
+    </head>
+    <body>
+        <h1>Rust to WebAssembly compiler 🦀</h1>
+
+        <div id="editor" contenteditable="true">
+            <pre><code id="code">#[no_mangle]
+pub extern fn squarer(n: i32) -> i32 {
+    n * n
+}</code></pre>
+        </div>
+
+        <button id="compile">compile</button>
+
+        <hr />
+
+        <div class="inputs">
+            <div class="field">
+                <label for="name">Module name:</label>
+                <input type="text" id="name" value="squarer" />
+            </div>
+
+            <div class="field">
+                <label for="value">Input value:</label>
+                <input type="number" id="value" value="9" />
+            </div>
+        </div>
+
+        <button id="call">call</button>
+
+        <div id="output">
+            <p id="first-line">~:</p>
+        </div>
+
+        <script src="./scipts/main.js"></script>
+    </body>
+</html>
